@@ -1,9 +1,15 @@
 
 public class ExpenseCalculator implements Expenser {
-
+	
+	public User currentUser;
+	
+	public ExpenseCalculator(User user) {
+		currentUser = user;
+	}
+	
 	@Override
 	public void addExpense(Expense Ex) {
-		userAtHand.AddExpense(Ex);
+		currentUser.AddExpense(Ex);
 	}
 
 	@Override
