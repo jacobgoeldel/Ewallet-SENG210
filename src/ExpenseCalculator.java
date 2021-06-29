@@ -3,8 +3,7 @@ public class ExpenseCalculator implements Expenser {
 
 	@Override
 	public void addExpense(Expense Ex) {
-		// TODO Auto-generated method stub
-
+		userAtHand.AddExpense(Ex);
 	}
 
 	@Override
