@@ -12,4 +12,8 @@ public class User {
 	double monthlysavings;	
 	//should add constructor(s)
 	User(String username,String password){}
+	
+	public void AddIncome(Wage In) {
+		Income.add(In);
+	}
 }
