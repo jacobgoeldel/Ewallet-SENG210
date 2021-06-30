@@ -1,10 +1,15 @@
 
 public class ExpenseCalculator implements Expenser {
-
+	
+	public User currentUser;
+	
+	public ExpenseCalculator(User user) {
+		currentUser = user;
+	}
+	
 	@Override
 	public void addExpense(Expense Ex) {
-		// TODO Auto-generated method stub
-
+		currentUser.AddExpense(Ex);
 	}
 
 	@Override
