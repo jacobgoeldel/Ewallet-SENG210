@@ -17,6 +17,7 @@ public class EWalletApp extends JFrame {
 	
 	// UI Components
 	private JButton addExpenseButton;
+	private JButton addIncomeButton;
 	
 	EWalletApp() {
 		expenser = new ExpenseCalculator(new User("testuser", "password"));
@@ -28,7 +29,9 @@ public class EWalletApp extends JFrame {
 		
 		// add monthly expense button
 		addExpenseButton = new JButton("Add New Monthly Expense");
+		addIncomeButton = new JButton("Add New Monthly Income");
 		add(addExpenseButton);
+		add(addIncomeButton);
 		
 		addExpenseButton.addActionListener(new ActionListener() {
 			@Override
@@ -53,6 +56,32 @@ public class EWalletApp extends JFrame {
 				
 				Expense expense = new Expense(expenseName.getText(), Double.parseDouble(expenseAmount.getText()), Integer.parseInt(expenseFrequency.getText()));
 				expenser.addExpense(expense);
+			}
+		});
+		
+		addIncomeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				JTextField incomeName = new JTextField();
+				JTextField incomeAmount = new JTextField();
+				JTextField incomeMonth = new JTextField();
+				
+				Object[] newIncome = {
+					    "Income Name: ", incomeName,
+					    "Amount: ", incomeAmount,
+					    "Month: ", incomeMonth
+					};
+
+				
+				int option = JOptionPane.showConfirmDialog(null, newIncome, "Add New Income", JOptionPane.OK_CANCEL_OPTION);
+				
+				// exit out if they canceled
+				if(option != JOptionPane.OK_OPTION)
+					return;
+				
+				Wage wage = new Wage(incomeName.getText(), Double.parseDouble(incomeAmount.getText()), incomeMonth.getText());
+				expenser.addMonthlyIncome(wage);
 			}
 		});
 		
