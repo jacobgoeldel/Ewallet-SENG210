@@ -14,8 +14,7 @@ public class ExpenseCalculator implements Expenser {
 
 	@Override
 	public void addMonthlyIncome(Wage W) {
-		// TODO Auto-generated method stub
-
+		currentUser.AddIncome(W);
 	}
 
 	@Override
