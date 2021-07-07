@@ -24,5 +24,9 @@ public class User {
 	public void AddExpense(Expense Ex) {
 		Spending.add(Ex);
 	}
+	
+	public ArrayList<Expense> GetExpenses() {
+		return Spending;
+	}
   
 }

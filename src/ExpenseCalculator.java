@@ -24,9 +24,14 @@ public class ExpenseCalculator implements Expenser {
 	}
 
 	@Override
-	public void PrintExpensereport() {
-		// TODO Auto-generated method stub
-
+	public String PrintExpensereport() {
+		String output = "User's Expenses:\n";
+		
+		for (Expense ex : currentUser.GetExpenses()) {
+			output += ex.toString() + "\n";
+		}
+		
+		return output;
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public interface Expenser {
 	//total savings (total income- total expenses) to date, if the total savings are less than zero it should be reported as total new debt. 	
 	public void PrintFullreport();
 	//As  a user I would like to view a detailed report of all expenses, and summary information for expenses 
-	public void PrintExpensereport();
+	public String PrintExpensereport();
 	//As  a user I would like to view a detailed report of all income, and summary information for income
 	public void PrintIncomereport();
 	//As  a user I would like to view a detailed report of income of a certain type, and summary information for income
