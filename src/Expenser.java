@@ -13,7 +13,7 @@ public interface Expenser {
 	//As  a user I would like to view a detailed report of all expenses, and summary information for expenses 
 	public String PrintExpensereport();
 	//As  a user I would like to view a detailed report of all income, and summary information for income
-	public void PrintIncomereport();
+	public String PrintIncomereport();
 	//As  a user I would like to view a detailed report of income of a certain type, and summary information for income
 	public void PrintIncomereportbyTpe();
 	//As  a user I would like to view a detailed report of expense of a certain type , and summary information for expenses

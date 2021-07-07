@@ -35,9 +35,14 @@ public class ExpenseCalculator implements Expenser {
 	}
 
 	@Override
-	public void PrintIncomereport() {
-		// TODO Auto-generated method stub
-
+	public String PrintIncomereport() {
+		String output = "User's Income:\n";
+		
+		for (Wage wg : currentUser.GetIncomes()) {
+			output += wg.toString() + "\n";
+		}
+		
+		return output;
 	}
 
 	@Override

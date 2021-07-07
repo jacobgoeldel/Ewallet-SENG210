@@ -28,5 +28,9 @@ public class User {
 	public ArrayList<Expense> GetExpenses() {
 		return Spending;
 	}
+	
+	public ArrayList<Wage> GetIncomes() {
+		return Income;
+	}
   
 }

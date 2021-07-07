@@ -84,6 +84,8 @@ public class EWalletApp extends JFrame {
 				
 				Wage wage = new Wage(incomeName.getText(), Double.parseDouble(incomeAmount.getText()), incomeMonth.getText());
 				expenser.addMonthlyIncome(wage);
+				
+				System.out.println(expenser.PrintIncomereport());
 			}
 		});
 		
