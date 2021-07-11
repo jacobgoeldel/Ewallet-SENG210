@@ -74,7 +74,29 @@ public class ExpenseCalculator implements Expenser {
 	@Override
 	public int whenCanIBuy(String itemname, double price) {
 		// TODO Auto-generated method stub
-		return 0;
+		String item = itemname;
+		String result;
+		double itemPrice = price;
+		double currentSavings = currentUser.monthlysavings;
+		int months = 0;
+		System.out.println("Hit");
+		
+		while(itemPrice > currentSavings) {
+			itemPrice -= currentSavings;
+			months++;
+		}
+		
+		if(months == 0) {
+			result = "You could buy " + item + " right now!";
+		}
+		else if (months >= 12) {
+			result = "You'll have to save for a year or more to buy " + item + ".";
+		}
+		else {
+			result = "You'll have to save for " + months + " before you can buy " + item + ".";
+		}
+		
+		return months;
 	}
 
 	@Override

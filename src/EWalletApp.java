@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 public class EWalletApp extends JFrame {
 	private static final long serialVersionUID = 7170541099903686382L;
@@ -18,6 +19,7 @@ public class EWalletApp extends JFrame {
 	// UI Components
 	private JButton addExpenseButton;
 	private JButton addIncomeButton;
+	private JButton itemButton;
 	
 	EWalletApp() {
 		expenser = new ExpenseCalculator(new User("testuser", "password"));
@@ -30,8 +32,10 @@ public class EWalletApp extends JFrame {
 		// add monthly expense button
 		addExpenseButton = new JButton("Add New Monthly Expense");
 		addIncomeButton = new JButton("Add New Monthly Income");
+		itemButton = new JButton("Upcoming Purchase");
 		add(addExpenseButton);
 		add(addIncomeButton);
+		add(itemButton);
 		
 		addExpenseButton.addActionListener(new ActionListener() {
 			@Override
@@ -84,6 +88,26 @@ public class EWalletApp extends JFrame {
 				expenser.addMonthlyIncome(wage);
 			}
 		});
+		
+		itemButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JTextField itemName = new JTextField();
+				JTextField itemPrice = new JTextField();
+				JTextPane result = new JTextPane();
+				
+				Object[] itemCheck = {
+						"Product: ", itemName,
+						"Price: ", itemPrice
+				};
+				
+				int option = JOptionPane.showConfirmDialog(null, itemCheck, "Upcoming Purchase", JOptionPane.OK_CANCEL_OPTION);
+				if(option != JOptionPane.OK_OPTION) {
+					return;
+				}
+				expenser.whenCanIBuy(itemName.getText(), Double.parseDouble(itemPrice.getText()));
+			}
+		}); 
 		
 		setVisible(true);
 	}
