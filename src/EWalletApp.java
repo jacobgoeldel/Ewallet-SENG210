@@ -109,19 +109,15 @@ public class EWalletApp extends JFrame {
 				
 				if(result == -1) {
 					JOptionPane.showMessageDialog(null, "No monthly savings founds, please update income and expenses.");
-					System.out.println("No monthly savings founds, please update income and expenses.");
 				}
 				else if(result == 0) {
 					JOptionPane.showMessageDialog(null, "You could buy " + itemName.getText() + " right now!");
-					System.out.println("You could buy " + itemName.getText() + " right now!");
 				}
 				else if (result >= 12) {
 					JOptionPane.showMessageDialog(null, "You'll have to save for a year or more to buy " + itemName.getText() + ".");
-					System.out.println("You'll have to save for a year or more to buy " + itemName.getText() + ".");
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "You'll have to save for " + result + " months before you can buy " + itemName.getText() + ".");
-					System.out.println("You'll have to save for " + result + " months before you can buy " + itemName.getText() + ".");
 				}
 			}
 		}); 
