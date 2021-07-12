@@ -19,7 +19,7 @@ public class ExpenseCalculator implements Expenser {
 
 	@Override
 	public String PrintFullreport() {
-		String output = "Report:\n\n";
+		String output = "\nReport:\n\n";
 		
 		double incomeTotal = TotalIncome();
 		double expenseTotal = TotalExpenses();
@@ -34,7 +34,9 @@ public class ExpenseCalculator implements Expenser {
 		output += String.format("Yearly Expenses: $%,.2f\n\n", expenseTotal);
 		
 		output += PrintExpensereport();
+		output += "\n";
 		output += PrintIncomereport();
+		output += "\n";
 		
 		return output;
 	}
