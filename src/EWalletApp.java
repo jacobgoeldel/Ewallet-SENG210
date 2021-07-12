@@ -57,7 +57,7 @@ public class EWalletApp extends JFrame {
 				Expense expense = new Expense(expenseName.getText(), Double.parseDouble(expenseAmount.getText()), Integer.parseInt(expenseFrequency.getText()));
 				expenser.addExpense(expense);
 				
-				System.out.println(expenser.PrintExpensereport());
+				System.out.println(expenser.PrintFullreport());
 			}
 		});
 		
@@ -85,7 +85,7 @@ public class EWalletApp extends JFrame {
 				Wage wage = new Wage(incomeName.getText(), Double.parseDouble(incomeAmount.getText()), incomeMonth.getText());
 				expenser.addMonthlyIncome(wage);
 				
-				System.out.println(expenser.PrintIncomereport());
+				System.out.println(expenser.PrintFullreport());
 			}
 		});
 		

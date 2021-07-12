@@ -18,9 +18,45 @@ public class ExpenseCalculator implements Expenser {
 	}
 
 	@Override
-	public void PrintFullreport() {
-		// TODO Auto-generated method stub
-
+	public String PrintFullreport() {
+		String output = "Report:\n\n";
+		
+		double incomeTotal = TotalIncome();
+		double expenseTotal = TotalExpenses();
+		double savingsTotal = incomeTotal - expenseTotal;
+		
+		if(savingsTotal < 0)
+			output += String.format("Total Debt Yearly: $%,.2f\n", savingsTotal * -1);
+		else
+			output += String.format("total Savings Yearly: $%,.2f\n", savingsTotal);
+		
+		output += String.format("Yearly Income: $%,.2f\n", incomeTotal);
+		output += String.format("Yearly Expenses: $%,.2f\n\n", expenseTotal);
+		
+		output += PrintExpensereport();
+		output += PrintIncomereport();
+		
+		return output;
+	}
+	
+	private double TotalIncome() {
+		double total = 0;
+		
+		for (Wage wg : currentUser.GetIncomes()) {
+			total += wg.amount;
+		}
+		
+		return total;
+	}
+	
+	private double TotalExpenses() {
+		double total = 0;
+		
+		for (Expense ex : currentUser.GetExpenses()) {
+			total += ex.amount * ex.yearlyfrequency;
+		}
+		
+		return total;
 	}
 
 	@Override
