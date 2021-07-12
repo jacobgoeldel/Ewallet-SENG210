@@ -20,6 +20,9 @@ public class EWalletApp extends JFrame {
 	private JButton addIncomeButton;
 	
 	EWalletApp() {
+		// Setup program to close after the window closes
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		expenser = new ExpenseCalculator(new User("testuser", "password"));
 		
 		setLayout(new GridLayout(3,1));  
