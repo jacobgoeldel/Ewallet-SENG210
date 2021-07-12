@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class EWalletApp extends JFrame {
@@ -18,6 +20,8 @@ public class EWalletApp extends JFrame {
 	// UI Components
 	private JButton addExpenseButton;
 	private JButton addIncomeButton;
+	private JTextArea reportOutput;
+	private JScrollPane reportScrollPane;
 	
 	EWalletApp() {
 		// Setup program to close after the window closes
@@ -33,8 +37,19 @@ public class EWalletApp extends JFrame {
 		// add monthly expense button
 		addExpenseButton = new JButton("Add New Monthly Expense");
 		addIncomeButton = new JButton("Add New Monthly Income");
+		
+		reportOutput = new JTextArea("", 1, 1);
+		reportOutput.setLineWrap(true);
+		reportOutput.setEditable(false);
+		reportOutput.setVisible(true);
+	    
+		reportScrollPane = new JScrollPane(reportOutput);
+		reportScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		reportScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
 		add(addExpenseButton);
 		add(addIncomeButton);
+		add(reportScrollPane);
 		
 		addExpenseButton.addActionListener(new ActionListener() {
 			@Override
@@ -60,7 +75,7 @@ public class EWalletApp extends JFrame {
 				Expense expense = new Expense(expenseName.getText(), Double.parseDouble(expenseAmount.getText()), Integer.parseInt(expenseFrequency.getText()));
 				expenser.addExpense(expense);
 				
-				System.out.println(expenser.PrintFullreport());
+				reportOutput.append(expenser.PrintFullreport());
 			}
 		});
 		
@@ -88,7 +103,7 @@ public class EWalletApp extends JFrame {
 				Wage wage = new Wage(incomeName.getText(), Double.parseDouble(incomeAmount.getText()), incomeMonth.getText());
 				expenser.addMonthlyIncome(wage);
 				
-				System.out.println(expenser.PrintFullreport());
+				reportOutput.append(expenser.PrintFullreport());
 			}
 		});
 		
