@@ -9,11 +9,11 @@ public interface Expenser {
 	//As  a user I would like to view a detailed report of all expenses, income, and summary information 
 	//summary information include : total income, total income for each type, total income for each month, total expense, total expense for each type, 
 	//total savings (total income- total expenses) to date, if the total savings are less than zero it should be reported as total new debt. 	
-	public void PrintFullreport();
+	public String PrintFullreport();
 	//As  a user I would like to view a detailed report of all expenses, and summary information for expenses 
-	public void PrintExpensereport();
+	public String PrintExpensereport();
 	//As  a user I would like to view a detailed report of all income, and summary information for income
-	public void PrintIncomereport();
+	public String PrintIncomereport();
 	//As  a user I would like to view a detailed report of income of a certain type, and summary information for income
 	public void PrintIncomereportbyTpe();
 	//As  a user I would like to view a detailed report of expense of a certain type , and summary information for expenses
