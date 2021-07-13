@@ -23,6 +23,7 @@ public class EWalletApp extends JFrame {
 	// UI Components
 	private JButton addExpenseButton;
 	private JButton addIncomeButton;
+  private JButton itemButton;
 	private JTextArea reportOutput;
 	private JScrollPane reportScrollPane;
 	
@@ -39,7 +40,7 @@ public class EWalletApp extends JFrame {
 		
 		JPanel buttonpanel = new JPanel();
 		
-		GridLayout buttonLayout = new GridLayout(0,2);
+		GridLayout buttonLayout = new GridLayout(0,3);
 		buttonLayout.setHgap(10);
 		buttonLayout.setVgap(10);
 		
@@ -53,6 +54,7 @@ public class EWalletApp extends JFrame {
 		// add monthly expense button
 		addExpenseButton = new JButton("Add New Monthly Expense");
 		addIncomeButton = new JButton("Add New Monthly Income");
+    itemButton = new JButton("Upcoming Purchase");
 		
 		// Create the report text area
 		reportOutput = new JTextArea("", 1, 1);
@@ -69,6 +71,7 @@ public class EWalletApp extends JFrame {
 		
 		buttonpanel.add(addExpenseButton);
 		buttonpanel.add(addIncomeButton);
+    buttonpanel.add(itemButton);
 		
 		// add button panel and report to the window
 		
@@ -134,6 +137,42 @@ public class EWalletApp extends JFrame {
 		});
 		
 		// show the window
+		setVisible(true);
+	}
+  
+  itemButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JTextField itemName = new JTextField();
+				JTextField itemPrice = new JTextField();
+				
+				Object[] itemCheck = {
+						"Product: ", itemName,
+						"Price: ", itemPrice
+				};
+				
+				int option = JOptionPane.showConfirmDialog(null, itemCheck, "Upcoming Purchase", JOptionPane.OK_CANCEL_OPTION);
+				if(option != JOptionPane.OK_OPTION) {
+					return;
+				}
+				
+				int result = expenser.whenCanIBuy(itemName.getText(), Double.parseDouble(itemPrice.getText()));
+				
+				if(result == -1) {
+					JOptionPane.showMessageDialog(null, "No monthly savings founds, please update income and expenses.");
+				}
+				else if(result == 0) {
+					JOptionPane.showMessageDialog(null, "You could buy " + itemName.getText() + " right now!");
+				}
+				else if (result >= 12) {
+					JOptionPane.showMessageDialog(null, "You'll have to save for a year or more to buy " + itemName.getText() + ".");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You'll have to save for " + result + " months before you can buy " + itemName.getText() + ".");
+				}
+			}
+		}); 
+		
 		setVisible(true);
 	}
 	

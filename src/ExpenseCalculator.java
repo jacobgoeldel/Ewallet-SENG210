@@ -122,7 +122,22 @@ public class ExpenseCalculator implements Expenser {
 	@Override
 	public int whenCanIBuy(String itemname, double price) {
 		// TODO Auto-generated method stub
-		return 0;
+		String item = itemname;
+		double itemPrice = price;
+		double currentSavings = currentUser.monthlysavings;
+		int months = 0;
+
+		
+		if(currentUser.monthlysavings <= 0) {
+			months = -1;
+		} else {
+			while(itemPrice > currentSavings) {
+				itemPrice -= currentSavings;
+				months++;
+			}
+		}
+		
+		return months;
 	}
 
 	@Override
