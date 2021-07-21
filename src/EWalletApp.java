@@ -5,10 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -26,6 +28,7 @@ public class EWalletApp extends JFrame {
 	private JButton addExpenseButton;
 	private JButton addIncomeButton;
 	private JButton itemButton;
+	private JButton currencyButton;
 	private JTextArea reportOutput;
 	private JScrollPane reportScrollPane;
 
@@ -58,6 +61,7 @@ public class EWalletApp extends JFrame {
 		addExpenseButton = new JButton("Add New Monthly Expense");
 		addIncomeButton = new JButton("Add New Monthly Income");
 		itemButton = new JButton("Upcoming Purchase");
+		currencyButton = new JButton("Currency Conversion");
 
 		// Create the report text area
 		reportOutput = new JTextArea("", 1, 1);
@@ -75,6 +79,7 @@ public class EWalletApp extends JFrame {
 		buttonpanel.add(addExpenseButton);
 		buttonpanel.add(addIncomeButton);
 		buttonpanel.add(itemButton);
+		buttonpanel.add(currencyButton);
 
 		// add button panel and report to the window
 
@@ -162,6 +167,42 @@ public class EWalletApp extends JFrame {
 					JOptionPane.showMessageDialog(null, "You'll have to save for " + result
 							+ " months before you can buy " + itemName.getText() + ".");
 				}
+			}
+		});
+		
+		currencyButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Currency euro = new Currency(0.85, "Euro");
+				Currency cDollar = new Currency(1.27, "Canadian Dollar");
+				Currency peso = new Currency (20.14, "Peso");
+				
+				ButtonGroup choices = new ButtonGroup();
+				JRadioButton eB = new JRadioButton("Euro");
+				JRadioButton cB = new JRadioButton("Canadian Dollar");
+				JRadioButton pB = new JRadioButton("Peso");
+				choices.add(eB);
+				choices.add(cB);
+				choices.add(pB);
+				
+				Object[] conversion = {"Choose A Currency: ", eB, cB, pB};
+				
+				int option = JOptionPane.showConfirmDialog(null, conversion, "Currency Conversion", JOptionPane.OK_CANCEL_OPTION);
+				
+				if (option != JOptionPane.OK_OPTION) {
+					return;
+				}
+				
+				if(eB.isSelected()) {
+					JOptionPane.showMessageDialog(null, expenser.convertForeignCurrency(euro));
+				}
+				else if(cB.isSelected()) {
+					JOptionPane.showMessageDialog(null, expenser.convertForeignCurrency(cDollar));
+				}
+				else if (pB.isSelected()) {
+					JOptionPane.showMessageDialog(null, expenser.convertForeignCurrency(peso));
+				}
+									
 			}
 		});
 

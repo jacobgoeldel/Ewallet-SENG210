@@ -102,9 +102,9 @@ public class ExpenseCalculator implements Expenser {
 	}
 
 	@Override
-	public Currency convertForeignCurrency(Currency C, double amount) {
-		// TODO Auto-generated method stub
-		return null;
+	public String convertForeignCurrency(Currency C) {
+		double returnCurrency = C.rate * currentUser.monthlysavings;
+		return "$" + currentUser.monthlysavings + " converted to " + C.name + " is " + returnCurrency + ".";
 	}
 
 	@Override
