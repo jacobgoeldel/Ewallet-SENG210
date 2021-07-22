@@ -45,7 +45,7 @@ public class ExpenseCalculator implements Expenser {
 		double total = 0;
 		
 		for (Wage wg : currentUser.GetIncomes()) {
-			total += wg.amount;
+			total += wg.amount * wg.yearlyfrequency;
 		}
 		
 		return total;
@@ -142,8 +142,10 @@ public class ExpenseCalculator implements Expenser {
 
 	@Override
 	public void updateMonthlySavings() {
-		// TODO Auto-generated method stub
-
+		double total = TotalIncome() + TotalExpenses();
+		total /= 12.0; // so its monthly
+		
+		currentUser.monthlysavings = total;
 	}
 
 }

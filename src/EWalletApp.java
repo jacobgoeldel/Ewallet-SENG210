@@ -91,7 +91,7 @@ public class EWalletApp extends JFrame {
 				JTextField expenseAmount = new JTextField();
 				JTextField expenseFrequency = new JTextField();
 
-				Object[] newExpense = { "Expense Name: ", expenseName, "Amount: ", expenseAmount, "Yearly Frequency: ",
+				Object[] newExpense = { "Expense Name: ", expenseName, "Amount: ", expenseAmount, "Times per Year: ",
 						expenseFrequency };
 
 				int option = JOptionPane.showConfirmDialog(null, newExpense, "Add New Expense",
@@ -105,6 +105,7 @@ public class EWalletApp extends JFrame {
 						Integer.parseInt(expenseFrequency.getText()));
 				expenser.addExpense(expense);
 
+				expenser.updateMonthlySavings();
 				reportOutput.setText(expenser.PrintFullreport());
 			}
 		});
@@ -115,9 +116,9 @@ public class EWalletApp extends JFrame {
 
 				JTextField incomeName = new JTextField();
 				JTextField incomeAmount = new JTextField();
-				JTextField incomeMonth = new JTextField();
+				JTextField incomeFrequency = new JTextField();
 
-				Object[] newIncome = { "Income Name: ", incomeName, "Amount: ", incomeAmount, "Month: ", incomeMonth };
+				Object[] newIncome = { "Income Name: ", incomeName, "Amount: ", incomeAmount, "Times per Year: ", incomeFrequency };
 
 				int option = JOptionPane.showConfirmDialog(null, newIncome, "Add New Income",
 						JOptionPane.OK_CANCEL_OPTION);
@@ -127,9 +128,10 @@ public class EWalletApp extends JFrame {
 					return;
 
 				Wage wage = new Wage(incomeName.getText(), Double.parseDouble(incomeAmount.getText()),
-						incomeMonth.getText());
+						Integer.parseInt(incomeFrequency.getText()));
 				expenser.addMonthlyIncome(wage);
 
+				expenser.updateMonthlySavings();
 				reportOutput.setText(expenser.PrintFullreport());
 			}
 		});
